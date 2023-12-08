@@ -1,3 +1,5 @@
+import kotlin.math.max
+
 inline fun <reified T> List<List<T>>.transpose(): MutableList<MutableList<T?>> {
     val transposed = MutableList(this.first().size) { MutableList<T?>(this.size) { null } }
     for (i in this.indices) {
@@ -29,6 +31,20 @@ fun List<ULong>.findCommonDivisor(): ULong {
         i++
     }
     return divisor
+}
+
+fun List<ULong>.findLowestCommonMultiple() = reduce { acc, value -> findLowestCommonMultiple(acc, value) }
+fun findLowestCommonMultiple(a: ULong, b: ULong): ULong {
+    val larger = max(a, b)
+    val maxCommonMultiple = a * b
+    var lowestCommonMultiple = larger
+    while (lowestCommonMultiple <= maxCommonMultiple) {
+        if (lowestCommonMultiple % a == 0uL && lowestCommonMultiple % b == 0uL) {
+            return lowestCommonMultiple
+        }
+        lowestCommonMultiple += larger
+    }
+    return maxCommonMultiple
 }
 
 fun <T> List<List<T>>.findCoordinatesOf(element: T): Pair<Int, Int> {
