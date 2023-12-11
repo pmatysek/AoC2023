@@ -64,3 +64,14 @@ fun Collection<Char>.toNumberExcludingNonDigits() = this
 
 fun <T> List<T>.subListCoercedIn(fromIndex: Int, toIndex: Int) =
     subList(fromIndex.coerceIn(indices), toIndex.coerceIn(0..this.size))
+
+fun Pair<Int, Int>.moveByVector(vector: Pair<Int, Int>) = (first + vector.first) to (second + vector.second)
+
+fun <T>Pair<Int, Int>.isOnMatrix(matrix: List<List<T>>) =
+    first in matrix.indices && second in matrix.first().indices
+
+fun <T> List<T>.combinations(): Sequence<Pair<T, T>> = sequence {
+    for (i in 0..<size - 1)
+        for (j in i + 1..<size)
+            yield(get(i) to get(j))
+}
