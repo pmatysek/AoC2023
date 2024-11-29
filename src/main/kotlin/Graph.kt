@@ -12,9 +12,9 @@ data class Graph<T>(
             edges[second] = mutableSetOf()
         }
         edges[first]!!.add(second)
-        edges[second]!!.add(first)
+        //edges[second]!!.add(first)
         weights[first to second] = wage
-        weights[second to first] = wage
+        //weights[second to first] = wage
     }
 
     fun addEdgeIfNotNull(first: T?, second: T?, wage: Int = 1) {

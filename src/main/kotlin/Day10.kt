@@ -1,7 +1,7 @@
-import Direction.DOWN
-import Direction.LEFT
-import Direction.RIGHT
-import Direction.UP
+import PipeDirection.DOWN
+import PipeDirection.LEFT
+import PipeDirection.RIGHT
+import PipeDirection.UP
 import kotlin.math.abs
 
 fun main() {
@@ -49,7 +49,7 @@ val movesMap = mapOf(
     'F' to listOf(DOWN, RIGHT),
     '7' to listOf(DOWN, LEFT),
 )
-enum class Direction(
+enum class PipeDirection(
     val vector: Pair<Int, Int>,
     val allowedSymbols: List<Char>,
 ) {
@@ -71,7 +71,7 @@ enum class Direction(
     ),
 }
 
-fun List<List<Char>>.canConnect(second: Pair<Int, Int>?, dir: Direction) =
+fun List<List<Char>>.canConnect(second: Pair<Int, Int>?, dir: PipeDirection) =
     second?.let {
         val value = this[it.first][it.second]
         value in dir.allowedSymbols

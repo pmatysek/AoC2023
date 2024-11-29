@@ -6,6 +6,7 @@ fun main() {
     println(part2(input))
 }
 
+val cache: MutableMap<Row.FunInput, ULong> = mutableMapOf()
 data class Row(
     val springs: List<Char>,
     val criteria: List<Int>,
@@ -15,8 +16,6 @@ data class Row(
         val criteria: List<Int>,
         val groupLength: Int,
     )
-
-    val cache: MutableMap<FunInput, ULong> = mutableMapOf()
 
     fun numberOfCorrectCombinations() = numberOfCorrectCombinations(
         springs.joinToString(""),
